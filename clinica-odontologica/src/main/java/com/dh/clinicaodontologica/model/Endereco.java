@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco {
-    private Long id;
+    private int id;
     private String rua;
     private String numero;
     private String bairro;
