@@ -15,7 +15,6 @@ public class Endereco {
     private String bairro;
     private String cidade;
     private String estado;
-    private Long paciente;
 
     public Endereco(EnderecoDTO enderecoDTO) {
         this.rua = enderecoDTO.getRua();

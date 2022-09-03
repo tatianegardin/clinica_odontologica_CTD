@@ -18,7 +18,6 @@ public class EnderecoService implements IService<EnderecoDTO> {
     @Override
     public EnderecoDTO create(EnderecoDTO enderecoDTO) {
         Endereco endereco = new Endereco(enderecoDTO);
-        if (endereco.getPaciente() != 0)
         enderecoRepository.create(endereco);
         return enderecoDTO;
     }
