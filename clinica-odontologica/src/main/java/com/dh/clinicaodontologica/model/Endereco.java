@@ -14,4 +14,5 @@ public class Endereco {
     private String bairro;
     private String cidade;
     private String estado;
+    private Long paciente;
 }
