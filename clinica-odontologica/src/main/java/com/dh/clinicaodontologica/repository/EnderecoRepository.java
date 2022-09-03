@@ -14,27 +14,27 @@ public class EnderecoRepository {
 
     private static int idEndereco = 1;
 
-    public Endereco salvar(Endereco endereco) {
+    public Endereco create(Endereco endereco) {
         endereco.setId(idEndereco++);
         enderecoMap.put(endereco.getId(), endereco);
         return endereco;
     }
 
-//    public Endereco getById(int id) {
-//        return enderecoMap.get(id);
-//    }
+    public Endereco getById(int id) {
+        return enderecoMap.get(id);
+    }
 
-//    public String delete(int id) {
-//        enderecoMap.remove(id);
-//        return "Deletado";
-//    }
+    public String delete(int id) {
+        enderecoMap.remove(id);
+        return "Endereço Deletado";
+    }
 
     public Endereco update(Endereco endereco) {
         enderecoMap.put(endereco.getId(), endereco);
         return endereco;
     }
 
-    public List<Endereco> listarTodos() {
+    public List<Endereco> getaAll() {
         List<Endereco> enderecoEntities = new ArrayList<>(enderecoMap.values());
         return enderecoEntities;
     }
