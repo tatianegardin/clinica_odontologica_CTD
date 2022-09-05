@@ -47,6 +47,9 @@ public class EnderecoService implements IService<EnderecoDTO> {
 
     @Override
     public EnderecoDTO update(EnderecoDTO enderecoDTO, int id) {
-        return null;
+        Endereco endereco = new Endereco(enderecoDTO);
+        endereco.setId(id);
+        enderecoRepository.update(endereco);
+        return enderecoDTO;
     }
 }
