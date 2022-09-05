@@ -1,16 +1,14 @@
 package com.dh.clinicaodontologica.model;
-<<<<<<< Updated upstream
 
-public class Procedimento {
-}
-=======
 import lombok.*;
 
-@Getter;
-@Setter;
-@NoArgs
-@NoArgs
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Procedimento {
-
+    private long id;
+    private String tipo;
+    private String descricao;
 }
->>>>>>> Stashed changes
