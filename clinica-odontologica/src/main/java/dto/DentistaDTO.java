@@ -1,4 +1,4 @@
-package com.dh.clinicaodontologica.dto;
+package dto;
 
 public class DentistaDTO {
     private String nomeCompleto;
