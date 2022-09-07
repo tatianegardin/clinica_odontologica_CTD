@@ -1,6 +1,6 @@
 package com.dh.clinicaodontologica.model;
 
-import dto.EnderecoDTO;
+import com.dh.clinicaodontologica.dto.endereco.EnderecoDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +33,7 @@ public class Endereco {
     private Pacientes paciente;
 
 
-    public Endereco(EnderecoDTO enderecoDTO) {
+    public Endereco(EnderecoDto enderecoDTO) {
         this.id = enderecoDTO.getId();
         this.rua = enderecoDTO.getRua();
         this.numero = enderecoDTO.getNumero();

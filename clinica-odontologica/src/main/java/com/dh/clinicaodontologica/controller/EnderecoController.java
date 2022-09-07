@@ -1,6 +1,6 @@
 package com.dh.clinicaodontologica.controller;
 
-import dto.EnderecoDTO;
+import com.dh.clinicaodontologica.dto.endereco.EnderecoDto;
 import com.dh.clinicaodontologica.service.impl.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,20 +12,20 @@ import java.util.List;
 public class EnderecoController {
 
     @Autowired
-    private EnderecoService enderecoService;
+    EnderecoService enderecoService;
 
-    @PostMapping
-    public EnderecoDTO create(@RequestBody EnderecoDTO enderecoDTO) {
+    @PostMapping("/cadastrar")
+    public EnderecoDto create(@RequestBody EnderecoDto enderecoDTO) {
         return enderecoService.create(enderecoDTO);
     }
 
     @GetMapping
-    public List<EnderecoDTO> getAll() {
+    public List<EnderecoDto> getAll() {
         return enderecoService.getAll();
     }
 
-    @PutMapping("/update/{id}")
-    public EnderecoDTO update(@RequestBody EnderecoDTO enderecoDTO, @PathVariable Long id) {
+    @PutMapping("/atualizar/{id}")
+    public EnderecoDto update(@RequestBody EnderecoDto enderecoDTO, @PathVariable Long id) {
         return enderecoService.update(enderecoDTO, id);
     }
 }

@@ -1,4 +1,4 @@
-package dto;
+package com.dh.clinicaodontologica.dto.endereco;
 
 import com.dh.clinicaodontologica.model.Endereco;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EnderecoDTO {
+public class EnderecoDto {
     private Long id;
     private String rua;
     private String numero;
@@ -16,7 +16,7 @@ public class EnderecoDTO {
     private String cidade;
     private String estado;
 
-    public EnderecoDTO(Endereco endereco) {
+    public EnderecoDto(Endereco endereco) {
         this.id = endereco.getId();
         this.rua = endereco.getRua();
         this.numero = endereco.getNumero();

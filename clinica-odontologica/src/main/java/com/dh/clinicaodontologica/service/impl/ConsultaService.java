@@ -4,9 +4,7 @@ import com.dh.clinicaodontologica.dto.consulta.ConsultaRequestDto;
 import com.dh.clinicaodontologica.dto.consulta.ConsultaResponseDto;
 import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.model.Consulta;
-import com.dh.clinicaodontologica.model.Dentista;
 import com.dh.clinicaodontologica.repository.ConsultaRepositoy;
-import com.dh.clinicaodontologica.repository.DentistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
