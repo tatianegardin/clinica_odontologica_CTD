@@ -29,6 +29,10 @@ public class Endereco {
     @Column(nullable = false)
     private String estado;
 
+    @OneToOne
+    private Pacientes paciente;
+
+
     public Endereco(EnderecoDTO enderecoDTO) {
         this.id = enderecoDTO.getId();
         this.rua = enderecoDTO.getRua();

@@ -1,47 +1,32 @@
 package com.dh.clinicaodontologica.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Dentista {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String sobrenome;
+
+    @Column(nullable = false)
     private String cro;
 
-    public Dentista(long id, String nome, String sobrenome, String cro) {
-        this.id = id;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.cro = cro;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public String getCro() {
-        return cro;
-    }
-
-    public void setCro(String cro) {
-        this.cro = cro;
-    }
+    @OneToMany(mappedBy = "dentista")
+    List<Consulta> consultaList;
 }

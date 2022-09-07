@@ -1,13 +1,29 @@
 package com.dh.clinicaodontologica.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
+@Entity
 public class Pacientes {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String sobrenome;
+
+    @OneToOne(mappedBy = "paciente", cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
+
+    @Column(nullable = false)
     private LocalDateTime dataAlta;
+
+    @OneToMany(mappedBy = "dentista")
+    List<Consulta> consultaList;
 
     public Pacientes(long id, String nome, String sobrenome, Endereco endereco, LocalDateTime dataAlta) {
         this.id = id;
