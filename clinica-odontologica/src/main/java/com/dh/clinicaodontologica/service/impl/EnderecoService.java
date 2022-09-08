@@ -1,55 +1,84 @@
 package com.dh.clinicaodontologica.service.impl;
 
+import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
+import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.repository.IEnderecoRepository;
-import com.dh.clinicaodontologica.dto.endereco.EnderecoDto;
+import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
 import com.dh.clinicaodontologica.model.Endereco;
-import com.dh.clinicaodontologica.service.IService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class EnderecoService implements IService<EnderecoDto> {
+public class EnderecoService{
     @Autowired
-    private IEnderecoRepository enderecoRepository;
+    IEnderecoRepository enderecoRepository;
 
-    @Override
-    public EnderecoDto create(EnderecoDto enderecoDTO) {
-        Endereco endereco = new Endereco(enderecoDTO);
+
+    public Endereco findById(long id){
+        return enderecoRepository.findById(id).orElseThrow(() ->
+        {
+            throw new NotFoundException("endereco não encontrado");
+        });
+    }
+
+    private Endereco mapperDtoToEntity(EnderecoResponseDto enderecoResponseDto) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Endereco endereco = objectMapper.convertValue(enderecoResponseDto, Endereco.class);
+
+        return endereco;
+    }
+
+    private EnderecoResponseDto mapperEntityToDto(Endereco endereco) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        EnderecoResponseDto enderecoResponseDto = objectMapper.convertValue(endereco,
+                EnderecoResponseDto.class);
+
+        return enderecoResponseDto;
+    }
+
+    public EnderecoResponseDto salvarEndereco(EnderecoRequestDto enderecoRequestDto){
+
+        Endereco endereco = Endereco.builder()
+                .rua(enderecoRequestDto.getRua())
+                .numero(enderecoRequestDto.getNumero())
+                .bairro(enderecoRequestDto.getBairro())
+                .cidade(enderecoRequestDto.getCidade())
+                .estado(enderecoRequestDto.getEstado())
+                .build();
+
+        enderecoRepository.saveAndFlush(endereco);
+
+        return new EnderecoResponseDto(endereco);
+    }
+
+    public EnderecoResponseDto atualizarEndereco(EnderecoRequestDto enderecoRequestDto, long id){
+        Endereco endereco = findById(id);
+        endereco.setRua(enderecoRequestDto.getRua());
+        endereco.setNumero(enderecoRequestDto.getNumero());
+        endereco.setBairro(enderecoRequestDto.getBairro());
+        endereco.setCidade(enderecoRequestDto.getCidade());
+        endereco.setEstado(enderecoRequestDto.getEstado());
+
         enderecoRepository.save(endereco);
-        return enderecoDTO;
+
+        return new EnderecoResponseDto(endereco);
     }
 
-    @Override
-    public EnderecoDto getById(Long id) {
-        return null;
-    }
 
-    @Override
-    public List<EnderecoDto> getAll() {
+    public List<EnderecoResponseDto> listarTodos() {
         List<Endereco> enderecoEntities = enderecoRepository.findAll();
-        List<EnderecoDto> enderecoDtos = new ArrayList<>();
+        List<EnderecoResponseDto> enderecoDtos = new ArrayList<>();
 
         for (Endereco endereco : enderecoEntities) {
-            EnderecoDto enderecoDTO = new EnderecoDto(endereco);
-            enderecoDtos.add(enderecoDTO);
+            EnderecoResponseDto enderecoResponseDto = new EnderecoResponseDto(endereco);
+            enderecoDtos.add(enderecoResponseDto);
         }
 
         return enderecoDtos;
-    }
-
-    @Override
-    public String delete(Long id) {
-        return null;
-    }
-
-    @Override
-    public EnderecoDto update(EnderecoDto enderecoDTO, Long id) {
-        Endereco endereco = new Endereco(enderecoDTO);
-        endereco.setId(id);
-        enderecoRepository.saveAndFlush(endereco);
-        return enderecoDTO;
     }
 }

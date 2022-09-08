@@ -1,7 +1,8 @@
 package com.dh.clinicaodontologica.model;
 
-import com.dh.clinicaodontologica.dto.endereco.EnderecoDto;
+import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name= "Endereco")
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,12 +35,12 @@ public class Endereco {
     private Pacientes paciente;
 
 
-    public Endereco(EnderecoDto enderecoDTO) {
-        this.id = enderecoDTO.getId();
-        this.rua = enderecoDTO.getRua();
-        this.numero = enderecoDTO.getNumero();
-        this.bairro = enderecoDTO.getBairro();
-        this.cidade = enderecoDTO.getCidade();
-        this.estado = enderecoDTO.getEstado();
+    public Endereco(EnderecoResponseDto enderecoResponseDTO) {
+        this.id = enderecoResponseDTO.getId();
+        this.rua = enderecoResponseDTO.getRua();
+        this.numero = enderecoResponseDTO.getNumero();
+        this.bairro = enderecoResponseDTO.getBairro();
+        this.cidade = enderecoResponseDTO.getCidade();
+        this.estado = enderecoResponseDTO.getEstado();
     }
 }
