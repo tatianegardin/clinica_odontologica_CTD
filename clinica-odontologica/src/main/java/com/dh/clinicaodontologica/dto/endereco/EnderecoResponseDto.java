@@ -1,22 +1,24 @@
 package com.dh.clinicaodontologica.dto.endereco;
 
 import com.dh.clinicaodontologica.model.Endereco;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+//@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class EnderecoDto {
+public class EnderecoResponseDto {
     private Long id;
+
     private String rua;
     private String numero;
     private String bairro;
     private String cidade;
     private String estado;
 
-    public EnderecoDto(Endereco endereco) {
+    public EnderecoResponseDto() {
+    }
+
+    public EnderecoResponseDto(Endereco endereco) {
         this.id = endereco.getId();
         this.rua = endereco.getRua();
         this.numero = endereco.getNumero();
