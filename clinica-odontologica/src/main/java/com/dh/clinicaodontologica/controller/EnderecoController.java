@@ -2,6 +2,7 @@ package com.dh.clinicaodontologica.controller;
 
 import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
+import com.dh.clinicaodontologica.exception.ErrorEndereco;
 import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.model.Endereco;
 import com.dh.clinicaodontologica.service.impl.EnderecoService;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,6 +37,24 @@ public class EnderecoController {
     @GetMapping
     public ResponseEntity<List<EnderecoResponseDto>> listarTodos(){
         return ResponseEntity.ok().body(enderecoService.listarTodos());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Endereco> findById(@PathVariable long id) {
+        Endereco end = enderecoService.findById(id);
+        return ResponseEntity.ok().body(end);
+    }
+
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam(value = "id") long id) {
+        return enderecoService.delete(id);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorEndereco> handleException (NotFoundException ex) {
+        ErrorEndereco errorEndereco = new ErrorEndereco(HttpStatus.NOT_FOUND.value(), ex.getMessage(), new Date());
+        return new ResponseEntity<ErrorEndereco>(errorEndereco, HttpStatus.NOT_FOUND);
     }
 
 

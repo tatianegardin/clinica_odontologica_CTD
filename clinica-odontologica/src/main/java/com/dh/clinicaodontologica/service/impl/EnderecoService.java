@@ -2,7 +2,7 @@ package com.dh.clinicaodontologica.service.impl;
 
 import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
 import com.dh.clinicaodontologica.exception.NotFoundException;
-import com.dh.clinicaodontologica.repository.IEnderecoRepository;
+import com.dh.clinicaodontologica.repository.EnderecoRepository;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
 import com.dh.clinicaodontologica.model.Endereco;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,15 +16,17 @@ import java.util.Optional;
 @Service
 public class EnderecoService{
     @Autowired
-    IEnderecoRepository enderecoRepository;
+    EnderecoRepository enderecoRepository;
 
 
     public Endereco findById(long id){
+
         return enderecoRepository.findById(id).orElseThrow(() ->
         {
-            throw new NotFoundException("endereco não encontrado");
+            throw new NotFoundException("Endereco não encontrado");
         });
     }
+
 
     private Endereco mapperDtoToEntity(EnderecoResponseDto enderecoResponseDto) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -81,4 +83,43 @@ public class EnderecoService{
 
         return enderecoDtos;
     }
+
+    public String delete(long id) {
+        Endereco endereco = findById(id);
+        enderecoRepository.deleteById(endereco.getId());
+        return "Deletado";
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
