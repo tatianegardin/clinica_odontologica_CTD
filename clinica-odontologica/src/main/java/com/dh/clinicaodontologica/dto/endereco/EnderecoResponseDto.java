@@ -4,6 +4,8 @@ import com.dh.clinicaodontologica.model.Endereco;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+import java.util.Optional;
+
 //@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class EnderecoResponseDto {
@@ -26,4 +28,5 @@ public class EnderecoResponseDto {
         this.cidade = endereco.getCidade();
         this.estado = endereco.getEstado();
     }
+
 }
