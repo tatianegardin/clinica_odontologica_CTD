@@ -39,16 +39,17 @@ public class EnderecoController {
         return ResponseEntity.ok().body(enderecoService.listarTodos());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Endereco> findById(@PathVariable long id) {
-        Endereco end = enderecoService.findById(id);
-        return ResponseEntity.ok().body(end);
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<EnderecoResponseDto> findBy(@PathVariable long id) {
+        EnderecoResponseDto enderecoResponseDto = enderecoService.findBy(id);
+        return ResponseEntity.ok().body(enderecoResponseDto);
     }
 
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam(value = "id") long id) {
-        return enderecoService.delete(id);
+    @GetMapping("/deleteById")
+    public ResponseEntity<String> deleteById(@RequestParam(value = "id") long id) {
+        EnderecoResponseDto enderecoResponseDto = enderecoService.deleteById(id);
+        return new ResponseEntity<String>("Endereço deletado com sucesso 😀!", HttpStatus.OK);
     }
 
     @ExceptionHandler(NotFoundException.class)

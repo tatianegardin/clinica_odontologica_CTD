@@ -14,17 +14,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EnderecoService{
+public class EnderecoService {
     @Autowired
     EnderecoRepository enderecoRepository;
 
-
-    public Endereco findById(long id){
+    public Endereco findById(long id) {
 
         return enderecoRepository.findById(id).orElseThrow(() ->
         {
-            throw new NotFoundException("Endereco não encontrado");
+            throw new NotFoundException("Endereço não encontrado 😥");
         });
+    }
+
+    //Alternativa para não passar uma Entity pelo metodo "findById" da Controller
+    public EnderecoResponseDto findBy(long id) {
+        Endereco endereco = findById(id);
+        enderecoRepository.findById(id);
+        return new EnderecoResponseDto(endereco);
     }
 
 
@@ -43,7 +49,7 @@ public class EnderecoService{
         return enderecoResponseDto;
     }
 
-    public EnderecoResponseDto salvarEndereco(EnderecoRequestDto enderecoRequestDto){
+    public EnderecoResponseDto salvarEndereco(EnderecoRequestDto enderecoRequestDto) {
 
         Endereco endereco = Endereco.builder()
                 .rua(enderecoRequestDto.getRua())
@@ -58,7 +64,7 @@ public class EnderecoService{
         return new EnderecoResponseDto(endereco);
     }
 
-    public EnderecoResponseDto atualizarEndereco(EnderecoRequestDto enderecoRequestDto, long id){
+    public EnderecoResponseDto atualizarEndereco(EnderecoRequestDto enderecoRequestDto, long id) {
         Endereco endereco = findById(id);
         endereco.setRua(enderecoRequestDto.getRua());
         endereco.setNumero(enderecoRequestDto.getNumero());
@@ -84,12 +90,11 @@ public class EnderecoService{
         return enderecoDtos;
     }
 
-    public String delete(long id) {
+    public EnderecoResponseDto deleteById(long id) {
         Endereco endereco = findById(id);
         enderecoRepository.deleteById(endereco.getId());
-        return "Deletado";
+        return new EnderecoResponseDto(endereco);
     }
-
 
 }
 

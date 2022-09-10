@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
     @Query("FROM Endereco e where e.id = :id")
-    Endereco delete(long id);
+    Endereco deleteById(long id);
 }
