@@ -31,8 +31,8 @@ public class Endereco {
     @Column(nullable = false)
     private String estado;
 
-    @OneToOne
-    private Pacientes paciente;
+    @OneToOne (mappedBy = "endereco")
+    private Paciente paciente;
 
 
     public Endereco(EnderecoResponseDto enderecoResponseDTO) {
