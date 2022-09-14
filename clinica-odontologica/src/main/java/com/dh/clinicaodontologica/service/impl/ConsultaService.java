@@ -25,7 +25,7 @@ public class ConsultaService {
 
     public ConsultaResponseDto salvarConsulta(ConsultaRequestDto consultaRequestDto) {
         //Dentista dentista = findById(dentistaRepository.getDentistaId());
-        //Pacientes paciente = findById(pacienteRepository.getPacienteId());
+        //Paciente paciente = findById(pacienteRepository.getPacienteId());
         //Procedimento paciente = findById(procedimentoRepository.getPacienteId());
 
         Consulta consulta = Consulta.builder()
