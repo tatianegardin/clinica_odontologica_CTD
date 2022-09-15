@@ -1,5 +1,6 @@
 package com.dh.clinicaodontologica.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,7 +30,7 @@ public class Paciente {
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime dataAlta;
 
     @OneToMany(mappedBy = "dentista")

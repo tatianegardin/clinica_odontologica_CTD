@@ -11,7 +11,6 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Builder
 public class ConsultaRequestDto {
-    private long id;
     private long dentistaId;
     private long pacienteId;
     private long procedimentoId;
