@@ -1,6 +1,7 @@
 package com.dh.clinicaodontologica.model;
 
 import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,9 +31,6 @@ public class Endereco {
     private String cidade;
     @Column(nullable = false)
     private String estado;
-
-    @OneToOne (mappedBy = "endereco")
-    private Paciente paciente;
 
 
     public Endereco(EnderecoResponseDto enderecoResponseDTO) {
