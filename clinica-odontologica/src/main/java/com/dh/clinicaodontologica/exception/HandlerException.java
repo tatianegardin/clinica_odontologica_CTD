@@ -33,4 +33,16 @@ public class HandlerException {
                         .build(),
                 HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(MyException.class)
+    public ResponseEntity<ExceptionDetails> handlerEnderecoException(MyException ex) {
+        return new ResponseEntity<>(
+                ExceptionDetails.builder()
+                        .titulo("Verifique a requisição!")
+                        .mensagem(ex.getMessage())
+                        .timestamp(LocalDateTime.now())
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .build(),
+                HttpStatus.BAD_REQUEST);
+    }
 }

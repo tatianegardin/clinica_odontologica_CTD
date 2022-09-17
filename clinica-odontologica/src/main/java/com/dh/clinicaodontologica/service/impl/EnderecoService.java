@@ -1,6 +1,8 @@
 package com.dh.clinicaodontologica.service.impl;
 
 import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
+import com.dh.clinicaodontologica.exception.BadRequestException;
+import com.dh.clinicaodontologica.exception.MyException;
 import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.repository.EnderecoRepository;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
@@ -22,7 +24,7 @@ public class EnderecoService {
 
         return enderecoRepository.findById(id).orElseThrow(() ->
         {
-            throw new NotFoundException("Endereço não encontrado 😥");
+            throw new MyException("Endereço não encontrado");
         });
     }
 
