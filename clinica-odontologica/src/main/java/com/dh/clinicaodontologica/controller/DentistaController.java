@@ -31,5 +31,10 @@ public class DentistaController {
     public ResponseEntity<List<DentistaResponseDto>> listarTodos() {
         return ResponseEntity.ok().body(dentistaService.listarTodos());
     }
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<DentistaResponseDto> findBy(@PathVariable long id) {
+        DentistaResponseDto dentistaResponseDto = dentistaService.findBy(id);
+        return ResponseEntity.ok().body(dentistaResponseDto);
+    }
 
 }
