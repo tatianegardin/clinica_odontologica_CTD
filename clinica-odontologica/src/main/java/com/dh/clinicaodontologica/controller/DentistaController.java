@@ -1,6 +1,6 @@
 package com.dh.clinicaodontologica.controller;
 
-
+import com.dh.clinicaodontologica.dto.dentista.DentistaRequestDto;
 import com.dh.clinicaodontologica.service.impl.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +21,10 @@ public class DentistaController {
     public ResponseEntity<DentistaResponseDto> salvarDentista(@RequestBody DentistaRequestDto dentistaRequestDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(dentistaService.salvardentista(dentistaRequestDto));
     }
-
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<DentistaResponseDto> atualizarDentista(@RequestBody DentistaRequestDto dentistaRequestDto, @PathVariable long id) {
+        DentistaResponseDto dentistaRequestDto1 = dentistaService.atualizarDentista(dentistaRequestDto, id);
+        return ResponseEntity.ok().body(dentistaRequestDto1);
+    }
 
 }
