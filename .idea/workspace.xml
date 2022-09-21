@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c15bc652-52f0-461f-8f71-4b41d237d596" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/ClinicaOdontologicaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/controller/ConsultaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/controller/DentistaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/controller/EnderecoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/controller/PacienteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/dto/consulta/ConsultaRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/dto/consulta/ConsultaResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/dto/dentista/DentistaDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/dto/dentista/DentistaRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/dto/dentista/DentistaResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/dto/endereco/EnderecoRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/dto/endereco/EnderecoResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/dto/paciente/PacienteRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/dto/paciente/PacienteResponseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/exception/BadRequestException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/exception/ErrorDentista.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/exception/ErrorPaciente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/exception/ExceptionDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/exception/HandlerException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/exception/MyException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/exception/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/model/Consulta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/model/Dentista.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/model/Endereco.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/model/Paciente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/model/Procedimento.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/repository/ConsultaRepositoy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/repository/DentistaRepositoy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/repository/EnderecoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/repository/PacienteRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/repository/ProcedimentoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/service/impl/ConsultaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/service/impl/DentistaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/service/impl/EnderecoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/service/impl/PacienteService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/service/impl/ProcedimentoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica-odontologica/src/test/java/com/dh/clinicaodontologica/ClinicaOdontologicaApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clinica_odontologica_CTD/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/service/impl/DentistaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/clinica_odontologica_CTD/clinica-odontologica/src/main/java/com/dh/clinicaodontologica/service/impl/DentistaService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/clinica_odontologica_CTD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2F3N4kgMOtylSiyOCrA4BwVYhSS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c15bc652-52f0-461f-8f71-4b41d237d596" name="Changes" comment="" />
+      <created>1663716620014</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663716620014</updated>
+    </task>
+    <servers />
+  </component>
+</project>
