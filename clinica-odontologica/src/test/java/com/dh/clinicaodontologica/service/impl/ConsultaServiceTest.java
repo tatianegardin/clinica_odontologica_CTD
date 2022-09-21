@@ -36,7 +36,7 @@ class ConsultaServiceTest {
 
     @Test
     void salvarConsulta_QuandoAConsultaForValida() {
-        var request = newCosnultaRequestDto();
+        var request = newConsultaRequestDto();
 
         when(consultaRepositoy.save(ArgumentMatchers.any(Consulta.class)))
                 .thenReturn(newConsulta());
@@ -56,7 +56,7 @@ class ConsultaServiceTest {
 
     @Test
     void salvarConsulta_LancarExcecao_QuandoJaExistirConsultaCadastrada() {
-        var request = newCosnultaRequestDto();
+        var request = newConsultaRequestDto();
 
         when(dentistaService.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(null);

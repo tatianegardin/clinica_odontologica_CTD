@@ -57,7 +57,7 @@ public class GeneraterMocks {
                 .build();
     }
 
-    public static ConsultaRequestDto newCosnultaRequestDto() {
+    public static ConsultaRequestDto newConsultaRequestDto() {
         return ConsultaRequestDto.builder()
                 .dentistaId(1L)
                 .pacienteId(1L)
