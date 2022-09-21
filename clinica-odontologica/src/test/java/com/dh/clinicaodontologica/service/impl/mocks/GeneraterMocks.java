@@ -7,7 +7,7 @@ import com.dh.clinicaodontologica.model.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class TestsMocks {
+public class GeneraterMocks {
 
     public static Dentista newDentista() {
         return Dentista.builder()
