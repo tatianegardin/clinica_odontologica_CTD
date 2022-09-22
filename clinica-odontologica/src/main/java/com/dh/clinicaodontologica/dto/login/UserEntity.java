@@ -1,7 +1,6 @@
 package com.dh.clinicaodontologica.dto.login;
 
 import com.dh.clinicaodontologica.enums.UserRoles;
-import org.hibernate.annotations.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-@Table( name = "Users")
+@Table
 public class UserEntity implements UserDetails {
 
     @Id
@@ -116,7 +115,4 @@ public class UserEntity implements UserDetails {
     public void setUserRoles(UserRoles userRoles) {
         this.userRoles = userRoles;
     }
-}
-
-
 }
