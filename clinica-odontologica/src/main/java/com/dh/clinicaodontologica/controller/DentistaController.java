@@ -1,9 +1,9 @@
 package com.dh.clinicaodontologica.controller;
 
-import com.dh.clinicaodontologica.dto.dentista.DentistaRequestDto;
-import com.dh.clinicaodontologica.dto.dentista.DentistaResponseDto;
+import com.dh.clinicaodontologica.dto.dentista.DentistaDTO;
 import com.dh.clinicaodontologica.exception.ErrorDentista;
 import com.dh.clinicaodontologica.exception.NotFoundException;
+import com.dh.clinicaodontologica.model.Dentista;
 import com.dh.clinicaodontologica.service.impl.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,26 +20,26 @@ public class DentistaController {
     DentistaService dentistaService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<DentistaResponseDto> salvarDentista(@RequestBody DentistaRequestDto dentistaRequestDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(dentistaService.salvardentista(dentistaRequestDto));
+    public ResponseEntity<DentistaDTO> salvarDentista(@RequestBody DentistaDTO dentistaDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(dentistaService.salvarDentista(dentistaDTO));
     }
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<DentistaResponseDto> atualizarDentista(@RequestBody DentistaRequestDto dentistaRequestDto, @PathVariable long id) {
-        DentistaResponseDto dentistaRequestDto1 = dentistaService.atualizarDentista(dentistaRequestDto, id);
+    public ResponseEntity<DentistaDTO> atualizarDentista(@RequestBody Dentista dentista, @PathVariable long id) {
+        DentistaDTO dentistaRequestDto1 = dentistaService.atualizarDentista(dentista, id);
         return ResponseEntity.ok().body(dentistaRequestDto1);
     }
     @GetMapping
-    public ResponseEntity<List<DentistaResponseDto>> listarTodos() {
+    public ResponseEntity<List<DentistaDTO>> listarTodos() {
         return ResponseEntity.ok().body(dentistaService.listarTodos());
     }
     @GetMapping("/findById/{id}")
-    public ResponseEntity<DentistaResponseDto> findBy(@PathVariable long id) {
-        DentistaResponseDto dentistaResponseDto = dentistaService.findBy(id);
-        return ResponseEntity.ok().body(dentistaResponseDto);
+    public ResponseEntity<DentistaDTO> findBy(@PathVariable long id) {
+        DentistaDTO DentistaDTO = dentistaService.findBy(id);
+        return ResponseEntity.ok().body(DentistaDTO);
     }
     @GetMapping("/deleteById")
     public ResponseEntity<String> deleteById (@RequestParam(value = "id") long id) {
-        DentistaResponseDto dentistaResponseDto = dentistaService.deleteById(id);
+        DentistaDTO DentistaDTO = dentistaService.deleteById(id);
         return new ResponseEntity<String>("Dentista deletado com sucesso!", HttpStatus.OK);
     }
 
