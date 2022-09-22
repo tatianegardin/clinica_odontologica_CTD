@@ -1,12 +1,8 @@
 package com.dh.clinicaodontologica.service.impl;
-
 import com.dh.clinicaodontologica.dto.dentista.DentistaDTO;
-
 import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.model.Dentista;
-
 import com.dh.clinicaodontologica.repository.DentistaRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,22 +27,12 @@ public class DentistaService {
         return new DentistaDTO(dentista);
     }
 
-    private Dentista mapperDtoToEntity(DentistaDTO dentistaResponseDto) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Dentista dentista = objectMapper.convertValue(dentistaResponseDto, Dentista.class);
 
-        return dentista;
-    }
-
-    private DentistaDTO mapperDtoToEntity(Dentista dentista) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        DentistaDTO dentistaResponseDto = objectMapper.convertValue(dentista, DentistaDTO.class);
-
-        return dentistaResponseDto;
-    }
 
      public DentistaDTO atualizarDentista(Dentista dentistaRequest, long id) {
         findById(id);
+
+        dentistaRequest.setId(id);
 
         dentistaRepository.save(dentistaRequest);
 
