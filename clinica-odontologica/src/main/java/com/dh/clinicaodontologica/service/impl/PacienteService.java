@@ -4,6 +4,7 @@ import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
 import com.dh.clinicaodontologica.dto.paciente.PacienteRequestDto;
 import com.dh.clinicaodontologica.dto.paciente.PacienteResponseDto;
 import com.dh.clinicaodontologica.exception.NotFoundException;
+import com.dh.clinicaodontologica.exception.VariableNullException;
 import com.dh.clinicaodontologica.model.Paciente;
 import com.dh.clinicaodontologica.repository.PacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;

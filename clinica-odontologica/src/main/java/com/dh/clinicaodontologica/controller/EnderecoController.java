@@ -21,9 +21,14 @@ public class EnderecoController {
     EnderecoService enderecoService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<EnderecoResponseDto> salvarEndereco(@RequestBody EnderecoRequestDto enderecoRequestDto){
-        var salvar = enderecoService.salvarEndereco(enderecoRequestDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
+    public ResponseEntity<EnderecoResponseDto> salvarEndereco(@RequestBody EnderecoRequestDto enderecoRequestDto) {
+        ResponseEntity responseEntity = null;
+
+            var salvar = enderecoService.salvarEndereco(enderecoRequestDto);
+            responseEntity = new ResponseEntity<>(salvar, HttpStatus.CREATED);
+
+        return responseEntity;
+
     }
 
     @PutMapping("/atualizar/{id}")
