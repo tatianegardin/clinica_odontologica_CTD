@@ -1,5 +1,6 @@
 package com.dh.clinicaodontologica.dto.endereco;
 
+import com.dh.clinicaodontologica.model.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,10 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class EnderecoRequestDto {
-    private Long id;
+    //private Long id;
     private String rua;
     private String numero;
     private String bairro;
     private String cidade;
     private String estado;
+
 }

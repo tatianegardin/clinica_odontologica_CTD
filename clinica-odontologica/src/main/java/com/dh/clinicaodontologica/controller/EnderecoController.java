@@ -2,26 +2,28 @@ package com.dh.clinicaodontologica.controller;
 
 import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
+import com.dh.clinicaodontologica.model.Endereco;
 import com.dh.clinicaodontologica.service.impl.EnderecoService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/endereco")
-//@RequestMapping(value = "/endereco", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 public class EnderecoController {
+    @Autowired
+    ModelMapper mapper;
 
     @Autowired
     EnderecoService enderecoService;
 
     @PostMapping("/cadastrar")
     public ResponseEntity<EnderecoResponseDto> salvarEndereco(@RequestBody EnderecoRequestDto enderecoRequestDto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(enderecoService.salvarEndereco(enderecoRequestDto));
+        var salvar = enderecoService.salvarEndereco(enderecoRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
     @PutMapping("/atualizar/{id}")
@@ -36,9 +38,9 @@ public class EnderecoController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<EnderecoResponseDto> findBy(@PathVariable long id) {
-        EnderecoResponseDto enderecoResponseDto = enderecoService.findBy(id);
-        return ResponseEntity.ok().body(enderecoResponseDto);
+    public ResponseEntity<Endereco> findById(@PathVariable long id) {
+        Endereco enderecoResponseDto = enderecoService.findById(id);
+        return ResponseEntity.ok().body(mapper.map(enderecoResponseDto, Endereco.class));
     }
 
     @GetMapping("/deleteById")
