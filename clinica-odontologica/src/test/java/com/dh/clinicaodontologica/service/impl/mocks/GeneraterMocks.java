@@ -2,6 +2,8 @@ package com.dh.clinicaodontologica.service.impl.mocks;
 
 import com.dh.clinicaodontologica.dto.consulta.ConsultaRequestDto;
 import com.dh.clinicaodontologica.dto.consulta.ConsultaResponseDto;
+import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
+import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
 import com.dh.clinicaodontologica.model.*;
 
 import java.time.LocalDate;

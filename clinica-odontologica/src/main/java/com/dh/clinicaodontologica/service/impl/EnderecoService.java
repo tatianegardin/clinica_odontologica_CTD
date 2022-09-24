@@ -1,13 +1,10 @@
 package com.dh.clinicaodontologica.service.impl;
 
 import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
-import com.dh.clinicaodontologica.exception.BadRequestException;
-import com.dh.clinicaodontologica.exception.MyException;
 import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.repository.EnderecoRepository;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
 import com.dh.clinicaodontologica.model.Endereco;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,34 +18,11 @@ public class EnderecoService {
     EnderecoRepository enderecoRepository;
 
     public Endereco findById(long id) {
-
-        return enderecoRepository.findById(id).orElseThrow(() ->
+        Optional<Endereco> obj = enderecoRepository.findById(id);
+        return obj.orElseThrow(() ->
         {
-            throw new MyException("Endereço não encontrado");
+            throw new NotFoundException("Endereço não encontrado");
         });
-    }
-
-    //Alternativa para não passar uma Entity pelo metodo "findById" da Controller
-    public EnderecoResponseDto findBy(long id) {
-        Endereco endereco = findById(id);
-        enderecoRepository.findById(id);
-        return new EnderecoResponseDto(endereco);
-    }
-
-
-    private Endereco mapperDtoToEntity(EnderecoResponseDto enderecoResponseDto) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Endereco endereco = objectMapper.convertValue(enderecoResponseDto, Endereco.class);
-
-        return endereco;
-    }
-
-    private EnderecoResponseDto mapperEntityToDto(Endereco endereco) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        EnderecoResponseDto enderecoResponseDto = objectMapper.convertValue(endereco,
-                EnderecoResponseDto.class);
-
-        return enderecoResponseDto;
     }
 
     public EnderecoResponseDto salvarEndereco(EnderecoRequestDto enderecoRequestDto) {
@@ -61,9 +35,8 @@ public class EnderecoService {
                 .estado(enderecoRequestDto.getEstado())
                 .build();
 
-        enderecoRepository.saveAndFlush(endereco);
-
-        return new EnderecoResponseDto(endereco);
+        var enderecoResponse = new EnderecoResponseDto(enderecoRepository.save(endereco));
+        return enderecoResponse;
     }
 
     public EnderecoResponseDto atualizarEndereco(EnderecoRequestDto enderecoRequestDto, long id) {
@@ -74,9 +47,8 @@ public class EnderecoService {
         endereco.setCidade(enderecoRequestDto.getCidade());
         endereco.setEstado(enderecoRequestDto.getEstado());
 
-        enderecoRepository.save(endereco);
-
-        return new EnderecoResponseDto(endereco);
+        var enderecoResponse = new EnderecoResponseDto(enderecoRepository.save(endereco));
+        return enderecoResponse;
     }
 
 
@@ -99,34 +71,3 @@ public class EnderecoService {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
