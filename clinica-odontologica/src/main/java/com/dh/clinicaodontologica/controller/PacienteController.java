@@ -1,5 +1,6 @@
 package com.dh.clinicaodontologica.controller;
 
+import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
 import com.dh.clinicaodontologica.dto.paciente.PacienteRequestDto;
 import com.dh.clinicaodontologica.dto.paciente.PacienteResponseDto;
 import com.dh.clinicaodontologica.exception.ErrorPaciente;
