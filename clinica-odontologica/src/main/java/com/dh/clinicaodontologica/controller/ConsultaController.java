@@ -3,9 +3,11 @@ package com.dh.clinicaodontologica.controller;
 import com.dh.clinicaodontologica.dto.consulta.ConsultaRequestDto;
 import com.dh.clinicaodontologica.dto.consulta.ConsultaResponseDto;
 import com.dh.clinicaodontologica.service.impl.ConsultaService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,7 @@ public class ConsultaController {
     ConsultaService consultaService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<ConsultaResponseDto> cadastrarConsulta(@RequestBody ConsultaRequestDto consultaRequestDto){
+    public ResponseEntity<ConsultaResponseDto> cadastrarConsulta(@Valid @RequestBody ConsultaRequestDto consultaRequestDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(consultaService.salvarConsulta(consultaRequestDto));
     }
 }
