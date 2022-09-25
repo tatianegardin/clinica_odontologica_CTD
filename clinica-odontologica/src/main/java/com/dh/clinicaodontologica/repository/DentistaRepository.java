@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DentistaRepository extends JpaRepository<Dentista, Long> {
-    @Query("FROM Dentista e where e. id = :id")
-    Dentista deleteById(long id);
+
 }

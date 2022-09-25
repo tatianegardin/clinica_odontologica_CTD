@@ -8,7 +8,7 @@ import com.dh.clinicaodontologica.model.Consulta;
 import com.dh.clinicaodontologica.model.Dentista;
 import com.dh.clinicaodontologica.model.Paciente;
 import com.dh.clinicaodontologica.model.Procedimento;
-import com.dh.clinicaodontologica.repository.ConsultaRepositoy;
+import com.dh.clinicaodontologica.repository.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.Objects;
 @Service
 public class ConsultaService {
     @Autowired
-    ConsultaRepositoy consultaRepositoy;
+    ConsultaRepository consultaRepository;
 
     @Autowired
     DentistaService dentistaService;
@@ -41,13 +41,13 @@ public class ConsultaService {
                 .data(consultaRequestDto.getData())
                 .hora(consultaRequestDto.getHora())
                 .build();
-        var consultaResponse = new ConsultaResponseDto(consultaRepositoy.save(consulta));
+        var consultaResponse = new ConsultaResponseDto(consultaRepository.save(consulta));
         return consultaResponse;
     }
 
     private Dentista verificaDisponibilidadeDentista (ConsultaRequestDto consultaRequestDto) {
         Dentista dentista = dentistaService.findById(consultaRequestDto.getDentistaId());
-        Consulta consulta = consultaRepositoy.findByConsultaByDentistaAndHorario
+        Consulta consulta = consultaRepository.findByConsultaByDentistaAndHorario
                 (consultaRequestDto.getDentistaId(),
                         consultaRequestDto.getData(),
                         consultaRequestDto.getHora());
@@ -58,7 +58,7 @@ public class ConsultaService {
     }
 
     public Consulta findById(long id){
-        return consultaRepositoy.findById(id).orElseThrow(() ->
+        return consultaRepository.findById(id).orElseThrow(() ->
         {
             throw new NotFoundException("Consulta não encontrada");
         });
