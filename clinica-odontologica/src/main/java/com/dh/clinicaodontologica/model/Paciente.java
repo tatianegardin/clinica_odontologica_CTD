@@ -26,6 +26,9 @@ public class Paciente {
     @Column(nullable = false)
     private String sobrenome;
 
+    @Column(nullable = false)
+    private String rg;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;

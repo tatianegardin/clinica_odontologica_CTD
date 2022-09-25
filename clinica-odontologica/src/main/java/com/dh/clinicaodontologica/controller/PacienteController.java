@@ -6,6 +6,8 @@ import com.dh.clinicaodontologica.dto.paciente.PacienteResponseDto;
 import com.dh.clinicaodontologica.exception.ErrorPaciente;
 import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.service.impl.PacienteService;
+import java.time.LocalDateTime;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +24,12 @@ public class PacienteController {
     PacienteService pacienteService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<PacienteResponseDto> salvarPaciente(@RequestBody PacienteRequestDto pacienteRequestDto) {
+    public ResponseEntity<PacienteResponseDto> salvarPaciente(@Valid @RequestBody PacienteRequestDto pacienteRequestDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pacienteService.salvarPaciente(pacienteRequestDto));
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<PacienteResponseDto> atualizarPaciente(@RequestBody PacienteRequestDto pacienteRequestDto, @PathVariable long id) {
+    public ResponseEntity<PacienteResponseDto> atualizarPaciente(@Valid @RequestBody PacienteRequestDto pacienteRequestDto, @PathVariable long id) {
         PacienteResponseDto pacienteRequestDto1 = pacienteService.atualizarPaciente(pacienteRequestDto, id);
         return ResponseEntity.ok().body(pacienteRequestDto1);
     }

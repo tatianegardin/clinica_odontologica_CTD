@@ -7,11 +7,13 @@ import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.model.Paciente;
 import com.dh.clinicaodontologica.repository.PacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class PacienteService {
@@ -50,6 +52,7 @@ public class PacienteService {
                 .nome(pacienteRequestDto.getNome())
                 .sobrenome(pacienteRequestDto.getSobrenome())
                 .endereco(pacienteRequestDto.getEndereco())
+                .rg(pacienteRequestDto.getRg())
                 .build();
 
         pacienteRepository.saveAndFlush(paciente);
