@@ -1,6 +1,7 @@
 package com.dh.clinicaodontologica.service.impl;
 
 import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
+import com.dh.clinicaodontologica.dto.paciente.PacienteResponseDto;
 import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.repository.EnderecoRepository;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
@@ -46,6 +47,10 @@ public class EnderecoService {
         endereco.setBairro(enderecoRequestDto.getBairro());
         endereco.setCidade(enderecoRequestDto.getCidade());
         endereco.setEstado(enderecoRequestDto.getEstado());
+
+//        enderecoRepository.save(endereco);
+//
+//        return new EnderecoResponseDto(endereco);
 
         var enderecoResponse = new EnderecoResponseDto(enderecoRepository.save(endereco));
         return enderecoResponse;

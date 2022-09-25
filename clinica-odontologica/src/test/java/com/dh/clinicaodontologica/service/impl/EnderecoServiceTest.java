@@ -118,12 +118,59 @@ public class EnderecoServiceTest {
     }
 
     @Test
-    void atualizarEndereco() {
+    @DisplayName("Retorna Sucesso ao atualizar um endereço")
+    void whenUpdateThenReturnSuccess() {
+
+        var request = mapper.map(newEndereco(), EnderecoRequestDto.class);
+        when(repository.save(any())).thenReturn(newEndereco());
+        when(repository.findById(anyLong())).thenReturn(Optional.ofNullable(newEndereco()));
+
+        var response = service.atualizarEndereco(request, 1L);
+
+        assertThat(response).isNotNull();
+        assertEquals(EnderecoResponseDto.class, response.getClass());
+        assertEquals(1L, response.getId());
+        assertEquals(request.getRua(), response.getRua());
+        assertEquals(request.getNumero(), response.getNumero());
+        assertEquals(request.getBairro(), response.getBairro());
+        assertEquals(request.getCidade(), response.getCidade());
+        assertEquals(request.getEstado(), response.getEstado());
+
+        verify(repository, times(1)).save(any(Endereco.class));
+    }
+
+
+    @Test
+    @DisplayName("Retorna falha atualizando um endereço") // Fazer depois de implementar as validações
+    void whenUpdateThenReturnNotFoundException() {
+
     }
 
     @Test
-    void deleteById() {
+    @DisplayName("Delete com sucesso")
+    void deleteWithSucess() {
+        when(repository.findById(anyLong())).thenReturn(Optional.ofNullable(newEndereco()));
+        doNothing().when(repository).deleteById(anyLong());
+
+        service.deleteById(1L);
+        verify(repository, times(1)).deleteById(anyLong());
+
     }
+
+    @Test
+    @DisplayName("Delete com falha")
+    void whenDeleteThenReturnNotFoundException() {
+        when(repository.findById(anyLong()))
+                .thenThrow(new NotFoundException(ENDERECO_NAO_ENCONTRADO));
+        try {
+            service.deleteById(1L);
+
+        } catch (Exception ex){
+            assertEquals(NotFoundException.class, ex.getClass());
+            assertEquals(ENDERECO_NAO_ENCONTRADO, ex.getMessage());
+        }
+    }
+
 }
 
 
