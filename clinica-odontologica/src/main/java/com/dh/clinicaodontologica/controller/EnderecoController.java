@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,7 +23,7 @@ public class EnderecoController {
     EnderecoService enderecoService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<EnderecoResponseDto> salvarEndereco(@RequestBody EnderecoRequestDto enderecoRequestDto) {
+    public ResponseEntity<EnderecoResponseDto> salvarEndereco(@Valid @RequestBody EnderecoRequestDto enderecoRequestDto) {
         ResponseEntity responseEntity = null;
 
             var salvar = enderecoService.salvarEndereco(enderecoRequestDto);
@@ -32,7 +34,7 @@ public class EnderecoController {
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<EnderecoResponseDto> atualizarEndereco(@RequestBody EnderecoRequestDto enderecoRequestDto,
+    public ResponseEntity<EnderecoResponseDto> atualizarEndereco(@Valid @RequestBody EnderecoRequestDto enderecoRequestDto,
                                                                  @PathVariable long id){
         EnderecoResponseDto enderecoRequestDto1 = enderecoService.atualizarEndereco(enderecoRequestDto, id);
         return ResponseEntity.ok().body(enderecoRequestDto1);
