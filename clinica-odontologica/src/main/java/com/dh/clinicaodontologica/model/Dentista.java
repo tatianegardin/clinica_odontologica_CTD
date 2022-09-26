@@ -19,15 +19,12 @@ public class Dentista {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull(message = "O campo 'nome' não pode ser nulo!")
     @Column(nullable = false)
     private String nome;
 
-    @NotNull(message = "O campo 'sobrenome' não pode ser nulo!")
     @Column(nullable = false)
     private String sobrenome;
 
-    @NotNull(message = "O campo 'cro' não pode ser nulo!")
     @Column(nullable = false)
     private String cro;
 
