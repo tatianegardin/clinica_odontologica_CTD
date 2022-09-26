@@ -33,20 +33,6 @@ public class PacienteService {
         return new PacienteResponseDto(paciente);
     }
 
-    private Paciente mapperDtoToEntity(PacienteResponseDto pacienteResponseDto) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Paciente paciente = objectMapper.convertValue(pacienteResponseDto, Paciente.class);
-
-        return paciente;
-    }
-
-    private PacienteResponseDto mapperDtoToEntity(Paciente paciente) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        PacienteResponseDto pacienteResponseDto = objectMapper.convertValue(paciente, PacienteResponseDto.class);
-
-        return pacienteResponseDto;
-    }
-
     public PacienteResponseDto salvarPaciente(PacienteRequestDto pacienteRequestDto) {
         Paciente paciente = Paciente.builder()
                 .nome(pacienteRequestDto.getNome())
@@ -56,10 +42,8 @@ public class PacienteService {
                 .build();
 
         pacienteRepository.saveAndFlush(paciente);
-
         return new PacienteResponseDto(paciente);
     }
-
     public PacienteResponseDto atualizarPaciente(PacienteRequestDto pacienteRequestDto, long id) {
         Paciente paciente = findById(id);
         paciente.setNome(pacienteRequestDto.getNome());
@@ -87,5 +71,4 @@ public class PacienteService {
         pacienteRepository.deleteById(paciente.getId());
         return new PacienteResponseDto(paciente);
     }
-
 }
