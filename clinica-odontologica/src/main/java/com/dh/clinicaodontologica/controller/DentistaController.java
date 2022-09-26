@@ -5,6 +5,7 @@ import com.dh.clinicaodontologica.exception.ErrorDentista;
 import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.model.Dentista;
 import com.dh.clinicaodontologica.service.impl.DentistaService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +21,11 @@ public class DentistaController {
     DentistaService dentistaService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<DentistaDTO> salvarDentista(@RequestBody DentistaDTO dentistaDTO) {
+    public ResponseEntity<DentistaDTO> salvarDentista(@Valid @RequestBody DentistaDTO dentistaDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(dentistaService.salvarDentista(dentistaDTO));
     }
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<DentistaDTO> atualizarDentista(@RequestBody Dentista dentista, @PathVariable long id) {
+    public ResponseEntity<DentistaDTO> atualizarDentista(@Valid @RequestBody Dentista dentista, @PathVariable long id) {
         DentistaDTO dentistaRequestDto1 = dentistaService.atualizarDentista(dentista, id);
         return ResponseEntity.ok().body(dentistaRequestDto1);
     }
