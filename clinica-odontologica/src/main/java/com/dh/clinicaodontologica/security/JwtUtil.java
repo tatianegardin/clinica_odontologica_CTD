@@ -1,4 +1,4 @@
-package security;
+package com.dh.clinicaodontologica.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

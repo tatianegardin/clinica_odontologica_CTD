@@ -1,4 +1,4 @@
-package security;
+package com.dh.clinicaodontologica.security;
 
 import com.dh.clinicaodontologica.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +33,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/user","/user/authenticate").permitAll()
-                .antMatchers(HttpMethod.GET, "/product").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/category", "/product").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/consulta").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/dentista", "/paciente").hasAnyRole("ADMIN")
                 .anyRequest()
                 .authenticated().and()
                 //.formLogin();
