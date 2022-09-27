@@ -1,6 +1,5 @@
 package com.dh.clinicaodontologica.dto.users;
 
-import com.dh.clinicaodontologica.dto.users.UserDTO;
 import com.dh.clinicaodontologica.enums.UserRoles;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,9 +32,6 @@ public class UserEntity implements UserDetails {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRoles userRoles;
-
-    public UserEntity() {
-    }
 
     public UserEntity(UserDTO userDTO) {
         this.name = userDTO.getName();
