@@ -1,6 +1,8 @@
-package com.dh.clinicaodontologica.login;
+package com.dh.clinicaodontologica.dto.users;
 
 import com.dh.clinicaodontologica.enums.UserRoles;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,12 +12,15 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-@Table
+@Table(name = "Users")
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(nullable = false)
     private String name;
 
@@ -31,9 +36,6 @@ public class UserEntity implements UserDetails {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRoles userRoles;
-
-    public UserEntity() {
-    }
 
     public UserEntity(UserDTO userDTO) {
         this.name = userDTO.getName();
@@ -116,3 +118,4 @@ public class UserEntity implements UserDetails {
         this.userRoles = userRoles;
     }
 }
+

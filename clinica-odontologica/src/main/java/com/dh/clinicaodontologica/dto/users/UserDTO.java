@@ -1,5 +1,4 @@
-package com.dh.clinicaodontologica.login;
-
+package com.dh.clinicaodontologica.dto.users;
 
 import com.dh.clinicaodontologica.enums.UserRoles;
 

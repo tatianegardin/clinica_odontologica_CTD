@@ -1,6 +1,5 @@
 package com.dh.clinicaodontologica.service.impl;
 
-import com.dh.clinicaodontologica.dto.paciente.PacienteRequestDto;
 import com.dh.clinicaodontologica.dto.paciente.PacienteResponseDto;
 import com.dh.clinicaodontologica.exception.NotFoundException;
 import com.dh.clinicaodontologica.model.Paciente;
@@ -8,30 +7,25 @@ import com.dh.clinicaodontologica.repository.PacienteRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Optional;
 
-import static com.dh.clinicaodontologica.service.impl.mocks.GeneraterMocks.newPaciente;
+import static com.dh.clinicaodontologica.service.impl.mocks.GeneraterMocks.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
-@AutoConfigureMockMvc
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class PacienteServiceTest {
-
-    public static final String PACIENTE_NAO_ENCONTRADO = "Paciente não encontrado.";
 
     public static final Long ID = 1L;
 
@@ -39,10 +33,10 @@ public class PacienteServiceTest {
     ModelMapper mapper;
 
     @InjectMocks
-    private PacienteService service;
+    private PacienteService pacienteService;
 
     @Mock
-    private PacienteRepository repository;
+    private PacienteRepository pacienteRepository;
 
 
     private Optional<Paciente> optionalPaciente;
@@ -58,12 +52,40 @@ public class PacienteServiceTest {
     }
 
     @Test
+    @DisplayName("Validando paciente cadastrado.")
+    void findById_QuandoExistirPaciente() {
+        var paciente = newPaciente();
+        when(pacienteRepository.findById(anyLong()))
+                .thenReturn(Optional.of(newPaciente()));
+
+        var response = pacienteService.findById(1L);
+
+        assertNotNull(response);
+        assertThat(response.getId()).isEqualTo(paciente.getId());
+        verify(pacienteRepository, times(1)).findById(anyLong());
+    }
+    @Test
+    void findById_LancarExcecao_QuandoPacienteNaoExistir() {
+        var paciente = newPaciente();
+        when(pacienteRepository.findById(anyLong()))
+                .thenReturn(Optional.empty());
+
+        var response = assertThrows(NotFoundException.class, () -> {
+            pacienteService.findById(1L);
+        });
+
+        assertThat(response.getMessage())
+                .isEqualTo("Paciente não encontrado 😥");
+        verify(pacienteRepository, times(1)).findById(anyLong());
+    }
+
+    @Test
     @DisplayName("Retorna uma instancia de Paciente ao buscar por Id")
-    void whenFindByIdThenReturnAnPacientInstance() {
+    void FindByIdThenReturnAnPacientInstance() {
 
-        when(repository.findById(anyLong())).thenReturn(optionalPaciente);
+        when(pacienteRepository.findById(anyLong())).thenReturn(optionalPaciente);
 
-        Paciente response = service.findById(newPaciente().getId());
+        Paciente response = pacienteService.findById(newPaciente().getId());
 
         assertNotNull(response);
         assertEquals(Paciente.class, response.getClass());
@@ -73,24 +95,38 @@ public class PacienteServiceTest {
     }
 
     @Test
-    @DisplayName("Retorna NotFoundException quando Id não encontrado")
-    void whenFindByIdThenReturnAnObjectNotFoundException() {
-        when(repository.findById(anyLong())).thenThrow(new NotFoundException(PACIENTE_NAO_ENCONTRADO));
+    @DisplayName("Retorna Sucesso ao salvar um paciente")
+    void whenCreateThenReturnSuccess() {
+        when(pacienteRepository.saveAndFlush(any(Paciente.class))).thenReturn(newPaciente());
+        var response = pacienteService.salvarPaciente(newPacienteRequestDto());
 
-        try {
-            service.findById(ID);
-        } catch (Exception ex) {
-            assertEquals(NotFoundException.class, ex.getClass());
-            assertEquals(PACIENTE_NAO_ENCONTRADO, ex.getMessage());
-        }
+        assertThat(response).isNotNull();
+        assertEquals(PacienteResponseDto.class, response.getClass());
+        assertEquals(newPaciente().getNome(), response.getNome());
+        assertEquals(newPaciente().getSobrenome(), response.getSobrenome());
+
+        verify(pacienteRepository, times(1)).saveAndFlush(any(Paciente.class));
+    }
+    @Test
+    void atualizarPaciente() {
+        when(pacienteRepository.save(any(Paciente.class))).thenReturn(newPaciente());
+        when(pacienteRepository.findById(anyLong())).thenReturn(Optional.of(newPaciente()));
+        var response = pacienteService.atualizarPaciente(newPacienteRequestDto(), 1L);
+
+        assertThat(response).isNotNull();
+        assertEquals(PacienteResponseDto.class, response.getClass());
+        assertEquals(newPaciente().getNome(), response.getNome());
+        assertEquals(newPaciente().getSobrenome(), response.getSobrenome());
+
+        verify(pacienteRepository, times(1)).save(any(Paciente.class));
     }
 
     @Test
     @DisplayName("Retorna uma lista de Pacientes")
-    void whenFindAllThenrReturnAnPacientList() {
-        when(repository.findAll()).thenReturn(List.of(newPaciente()));
+    void whenFindAllThenReturnAnPacientList() {
+        when(pacienteRepository.findAll()).thenReturn(List.of(newPaciente()));
 
-        List<PacienteResponseDto> response = service.listarTodos();
+        List<PacienteResponseDto> response = pacienteService.listarTodos();
 
         assertNotNull(response);
         assertEquals(1, response.size());
@@ -99,28 +135,13 @@ public class PacienteServiceTest {
         assertEquals(newPaciente().getNome(), response.get(0).getNome());
         assertEquals(newPaciente().getSobrenome(), response.get(0).getSobrenome());
     }
-
     @Test
-    @DisplayName("Retorna Sucesso ao salvar um paciente")
-    void whenCreateThenReturnSuccess() {
-        var request = mapper.map(newPaciente(), PacienteRequestDto.class);
-        when(repository.save(any(Paciente.class))).thenReturn(newPaciente());
-        var response = service.salvarPaciente(request);
+    @DisplayName("Deletar paciente com sucesso")
+    void deletePacienteWithSucess() {
+        when(pacienteRepository.findById(anyLong())).thenReturn(Optional.ofNullable(newPaciente()));
+        doNothing().when(pacienteRepository).deleteById(anyLong());
 
-        assertThat(response).isNotNull();
-        assertEquals(PacienteResponseDto.class, response.getClass());
-        assertEquals(1L, response.getId());
-        assertEquals(newPaciente().getNome(), response.getNome());
-        assertEquals(newPaciente().getSobrenome(), response.getSobrenome());
-
-        verify(repository, times(1)).save(any(Paciente.class));
+        pacienteService.deleteById(1L);
+        verify(pacienteRepository, times(1)).deleteById(anyLong());
     }
-    @Test
-    void atualizarPaciente() {
-    }
-
-    @Test
-    void deleteById() {
-    }
-
 }

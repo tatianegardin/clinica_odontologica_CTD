@@ -4,6 +4,8 @@ import com.dh.clinicaodontologica.dto.consulta.ConsultaRequestDto;
 import com.dh.clinicaodontologica.dto.consulta.ConsultaResponseDto;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
+import com.dh.clinicaodontologica.dto.paciente.PacienteRequestDto;
+import com.dh.clinicaodontologica.dto.paciente.PacienteResponseDto;
 import com.dh.clinicaodontologica.model.*;
 
 import java.time.LocalDate;
@@ -76,6 +78,22 @@ public class GeneraterMocks {
                 .hora(LocalTime.now())
                 .data(LocalDate.now())
                 .procedimento("Manutenção de aparelho")
+                .build();
+    }
+
+    public static PacienteRequestDto newPacienteRequestDto() {
+        return PacienteRequestDto.builder()
+                .nome("José")
+                .sobrenome("Maria")
+                .endereco(newEndereco())
+                .build();
+    }
+
+    public static PacienteResponseDto newPacienteResponseDto() {
+        return PacienteResponseDto.builder()
+                .nome("José")
+                .sobrenome("Maria")
+                .endereco(newEndereco())
                 .build();
     }
 }
