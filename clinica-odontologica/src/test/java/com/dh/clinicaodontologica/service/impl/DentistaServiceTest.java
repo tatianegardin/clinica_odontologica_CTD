@@ -105,7 +105,7 @@ public class DentistaServiceTest {
     @DisplayName("Retorna Sucesso ao salvar um dentista")
     void whenCreateThenReturnSuccess() {
         var request = mapper.map(newDentista(), DentistaDTO.class);
-        when(repository.save(any(Dentista.class))).thenReturn(newDentista());
+        when(repository.saveAndFlush(any(Dentista.class))).thenReturn(newDentista());
         var response = service.salvarDentista(request);
 
         assertThat(response).isNotNull();
@@ -114,7 +114,7 @@ public class DentistaServiceTest {
         assertEquals(newDentista().getSobrenome(), response.getSobrenome());
         assertEquals(newDentista().getCro(), response.getCro());
 
-        verify(repository, times(1)).save(any(Dentista.class));
+        verify(repository, times(1)).saveAndFlush(any(Dentista.class));
     }
     @Test
     void atualizarDentista() {
