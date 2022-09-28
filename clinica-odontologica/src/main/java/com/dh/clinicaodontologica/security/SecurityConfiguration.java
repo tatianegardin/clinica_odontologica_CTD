@@ -33,12 +33,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/user","/user/authenticate").permitAll()
-                .antMatchers(HttpMethod.GET, "/consulta").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/dentista", "/paciente").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/consulta/cadastrar").hasAnyRole( "USER","ADMIN")
+                .antMatchers("/dentista/**", "/paciente/**").hasAnyRole("ADMIN")
                 .anyRequest()
                 .authenticated().and()
-                //.formLogin();
-                //.httpBasic();
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }

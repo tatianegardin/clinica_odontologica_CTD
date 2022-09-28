@@ -1,6 +1,8 @@
 package com.dh.clinicaodontologica.dto.users;
 
 import com.dh.clinicaodontologica.enums.UserRoles;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +13,8 @@ import java.util.Collections;
 
 @Entity
 @Table(name = "Users")
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity implements UserDetails {
 
     @Id
