@@ -2,6 +2,7 @@ package com.dh.clinicaodontologica.service.impl.mocks;
 
 import com.dh.clinicaodontologica.dto.consulta.ConsultaRequestDto;
 import com.dh.clinicaodontologica.dto.consulta.ConsultaResponseDto;
+import com.dh.clinicaodontologica.dto.dentista.DentistaDTO;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoRequestDto;
 import com.dh.clinicaodontologica.dto.endereco.EnderecoResponseDto;
 import com.dh.clinicaodontologica.dto.paciente.PacienteRequestDto;
@@ -27,6 +28,7 @@ public class GeneraterMocks {
                 .id(1L)
                 .nome("José")
                 .sobrenome("Maria")
+                .rg("123")
                 .endereco(newEndereco())
                 .build();
     }
@@ -34,6 +36,25 @@ public class GeneraterMocks {
     public static Endereco newEndereco() {
         return Endereco.builder()
                 .id(1L)
+                .bairro("Bairro")
+                .cidade("Cidade")
+                .estado("Estado")
+                .numero("Numero")
+                .rua("Rua")
+                .build();
+    }
+
+    public static Paciente newPacienteSemId() {
+        return Paciente.builder()
+                .nome("José")
+                .sobrenome("Maria")
+                .rg("123")
+                .endereco(newEnderecoSemId())
+                .build();
+    }
+
+    public static Endereco newEnderecoSemId() {
+        return Endereco.builder()
                 .bairro("Bairro")
                 .cidade("Cidade")
                 .estado("Estado")
@@ -85,7 +106,8 @@ public class GeneraterMocks {
         return PacienteRequestDto.builder()
                 .nome("José")
                 .sobrenome("Maria")
-                .endereco(newEndereco())
+                .rg("123")
+                .endereco(newEnderecoSemId())
                 .build();
     }
 
@@ -94,6 +116,14 @@ public class GeneraterMocks {
                 .nome("José")
                 .sobrenome("Maria")
                 .endereco(newEndereco())
+                .build();
+    }
+
+    public static DentistaDTO newDentistaDto () {
+        return DentistaDTO.builder()
+                .nome("Daniel")
+                .sobrenome("Alves")
+                .cro("123")
                 .build();
     }
 }
