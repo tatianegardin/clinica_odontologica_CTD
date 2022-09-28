@@ -110,7 +110,6 @@ public class DentistaServiceTest {
 
         assertThat(response).isNotNull();
         assertEquals(DentistaDTO.class, response.getClass());
-        assertEquals(1L, response.getId());
         assertEquals(newDentista().getNome(), response.getNome());
         assertEquals(newDentista().getSobrenome(), response.getSobrenome());
         assertEquals(newDentista().getCro(), response.getCro());
