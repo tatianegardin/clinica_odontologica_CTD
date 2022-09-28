@@ -48,6 +48,7 @@ public class PacienteService {
         Paciente paciente = findById(id);
         paciente.setNome(pacienteRequestDto.getNome());
         paciente.setSobrenome(pacienteRequestDto.getSobrenome());
+        paciente.setRg(pacienteRequestDto.getRg());
         paciente.setEndereco(pacienteRequestDto.getEndereco());
 
         pacienteRepository.save(paciente);

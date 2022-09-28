@@ -16,6 +16,7 @@ public class PacienteResponseDto {
     private long id;
     private String nome;
     private String sobrenome;
+    private String rg;
     private Endereco endereco;
     private LocalDateTime dataAlta;
 
@@ -23,6 +24,7 @@ public class PacienteResponseDto {
         this.id = paciente.getId();
         this.nome = paciente.getNome();
         this.sobrenome = paciente.getSobrenome();
+        this.rg = paciente.getRg();
         this.endereco = paciente.getEndereco();
         this.dataAlta = paciente.getDataAlta();
     }
